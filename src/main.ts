@@ -1,5 +1,4 @@
 import * as core from '@actions/core'
-import * as glob from '@actions/glob'
 import * as exec from '@actions/exec'
 import {parseInputFiles, getDefaultPlatformArch} from './utils'
 import path from 'path'
@@ -27,13 +26,6 @@ async function run(): Promise<void> {
 
     const cover = core.getInput('cover') || 'off'
     core.debug(`cover = ${cover}`)
-
-    const pathsGlobber = await glob.create(packages.join('\n'), {
-      matchDirectories: true,
-      implicitDescendants: false
-    })
-    const paths = await pathsGlobber.glob()
-    core.debug(`paths = ${paths}`)
 
     const platforms = parseInputFiles(
       core.getInput('platforms') || getDefaultPlatformArch()
@@ -76,7 +68,7 @@ async function run(): Promise<void> {
 
       const [osPlatform, osArch] = platform.split('/')
 
-      for (let pkg of paths) {
+      for (let pkg of packages) {
         if (path.basename(pkg) === '...') {
           pkg = path.dirname(pkg)
         }
@@ -101,6 +93,7 @@ async function run(): Promise<void> {
         if (testArgs) {
           finalArgs = finalArgs.concat('-args', testArgs)
         }
+        core.debug(`go ${finalArgs.join(' ')}`)
 
         await exec.exec('go', finalArgs, {
           env
