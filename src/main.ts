@@ -1,8 +1,6 @@
 import * as core from '@actions/core'
 import * as exec from '@actions/exec'
 import {parseInputFiles, getDefaultPlatformArch} from './utils'
-import path from 'path'
-import fs from 'fs'
 
 async function run(): Promise<void> {
   try {
@@ -68,19 +66,7 @@ async function run(): Promise<void> {
 
       const [osPlatform, osArch] = platform.split('/')
 
-      for (let pkg of packages) {
-        if (path.basename(pkg) === '...') {
-          pkg = path.dirname(pkg)
-        }
-
-        const stat = fs.statSync(pkg.toString())
-        if (stat.isFile()) {
-          pkg = path.dirname(pkg)
-        } else if (!stat.isDirectory()) {
-          core.error(`path ${pkg} does not exist`)
-          return
-        }
-
+      for (const pkg of packages) {
         core.debug(`pkg = ${pkg}`)
 
         const env = process.env as {[key: string]: string}

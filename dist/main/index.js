@@ -7292,15 +7292,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const exec = __importStar(__nccwpck_require__(1514));
 const utils_1 = __nccwpck_require__(1314);
-const path_1 = __importDefault(__nccwpck_require__(1017));
-const fs_1 = __importDefault(__nccwpck_require__(7147));
 async function run() {
     try {
         const packages = (0, utils_1.parseInputFiles)(core.getInput('package') || './...');
@@ -7344,18 +7339,7 @@ async function run() {
         for (const platform of platforms) {
             core.debug(`platform = ${platform}`);
             const [osPlatform, osArch] = platform.split('/');
-            for (let pkg of packages) {
-                if (path_1.default.basename(pkg) === '...') {
-                    pkg = path_1.default.dirname(pkg);
-                }
-                const stat = fs_1.default.statSync(pkg.toString());
-                if (stat.isFile()) {
-                    pkg = path_1.default.dirname(pkg);
-                }
-                else if (!stat.isDirectory()) {
-                    core.error(`path ${pkg} does not exist`);
-                    return;
-                }
+            for (const pkg of packages) {
                 core.debug(`pkg = ${pkg}`);
                 const env = process.env;
                 env['GOOS'] = osPlatform;
