@@ -7316,7 +7316,7 @@ async function run() {
         core.debug(`platforms = ${platforms}`);
         const tags = (0, utils_1.parseInputFiles)(core.getInput('tags') || '');
         core.debug(`tags = ${tags}`);
-        let args = ['test', '-json'];
+        let args = ['test', '-v'];
         if (shuffle) {
             args = args.concat('-shuffle', shuffle);
         }
