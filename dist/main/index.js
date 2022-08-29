@@ -7365,7 +7365,7 @@ async function run() {
                 if (testArgs) {
                     finalArgs = finalArgs.concat('-args', testArgs);
                 }
-                core.debug(`go ${finalArgs.join(" ")}`);
+                core.debug(`go ${finalArgs.join(' ')}`);
                 await exec.exec('go', finalArgs, {
                     env
                 });
