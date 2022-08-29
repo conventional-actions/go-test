@@ -1,7 +1,7 @@
 import * as glob from 'glob'
 import {statSync} from 'fs'
-import os from "os";
-import * as core from "@actions/core";
+import os from 'os'
+import * as core from '@actions/core'
 
 export const parseInputFiles = (files: string): string[] => {
   return files.split(/\r?\n/).reduce<string[]>(
@@ -53,4 +53,3 @@ export const getDefaultPlatformArch = (): string => {
 
   return `${osPlatform}/${osArch}`
 }
-

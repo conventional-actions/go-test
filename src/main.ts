@@ -36,7 +36,7 @@ async function run(): Promise<void> {
     core.debug(`paths = ${paths}`)
 
     const platforms = parseInputFiles(
-        core.getInput('platforms') || getDefaultPlatformArch()
+      core.getInput('platforms') || getDefaultPlatformArch()
     )
     core.debug(`platforms = ${platforms}`)
 
@@ -102,13 +102,9 @@ async function run(): Promise<void> {
           finalArgs = finalArgs.concat('-args', testArgs)
         }
 
-        await exec.exec(
-            'go',
-            finalArgs,
-            {
-              env
-            }
-        )
+        await exec.exec('go', finalArgs, {
+          env
+        })
       }
     }
   } catch (error) {
