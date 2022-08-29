@@ -1,0 +1,38 @@
+name: 'go-test'
+description: 'Test Go code'
+author: 'Conventional Actions'
+inputs:
+  package:
+    required: false
+    description: 'package to test'
+    default: ./...
+  platforms:
+    required: false
+    description: 'comma-separated list of platforms to test'
+  tags:
+    required: false
+    description: 'comma-separated list of build tags to pass to go compiler'
+  args:
+    required: false
+    description: 'arguments to pass to the test'
+  match:
+    required: false
+    description: 'regular expression of tests to run'
+  parallel:
+    required: false
+    description: 'allow parallel execution of test functions that call t.Parallel'
+    default: '0'
+  failfast:
+    required: false
+    description: 'do not start new tests after the first test failure'
+    default: 'false'
+  cover:
+    required: false
+    description: 'set the mode for coverage analysis for the package being tested. Options are "off, set, count, automatic"'
+    default: 'off'
+runs:
+  using: 'node16'
+  main: 'dist/main/index.js'
+branding:
+  icon: target
+  color: purple
