@@ -9990,7 +9990,7 @@ async function getConfig() {
         failfast: core.getInput('failfast') === 'true',
         cover: core.getInput('cover') || 'off',
         platforms: (0, toolkit_1.parseMultiInput)(core.getInput('platforms') || (0, utils_1.getDefaultPlatformArch)()),
-        tags: (0, toolkit_1.parseMultiInput)(core.getInput('tags') || ''),
+        tags: (0, toolkit_1.parseMultiInput)(core.getInput('tags') || '')
     };
 }
 exports.getConfig = getConfig;
