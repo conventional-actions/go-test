@@ -20,8 +20,16 @@ async function run(): Promise<void> {
       args = args.concat('-failfast')
     }
 
-    if (config.cover !== 'off') {
-      args = args.concat('-cover', '-covermode', config.cover)
+    if (config.cover) {
+      args = args.concat('-cover')
+    }
+
+    if (config.covermode !== 'set') {
+      args = args.concat('-covermode', config.covermode)
+    }
+
+    if (config.coverprofile) {
+      args = args.concat('-coverprofile=' + config.coverprofile)
     }
 
     if (config.match) {
