@@ -31,7 +31,7 @@ inputs:
     description: 'set the mode for coverage analysis for the package being tested. Options are "off, set, count, automatic"'
     default: 'off'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/main/index.js'
 branding:
   icon: target
