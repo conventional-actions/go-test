@@ -12,16 +12,18 @@ To use the GitHub Action, add the following to your job:
 
 ### Inputs
 
-| Name        | Default         | Description                                                                                               |
-|-------------|-----------------|-----------------------------------------------------------------------------------------------------------|
-| `package`   | `./...`         | the package to scan                                                                                       |
-| `platforms` | native platform | comma-separated list of platforms to test                                                                 |
-| `tags`      | N/A             | comma-separated list of build tags to pass to go compiler                                                 |
-| `args`      | N/A             | arguments to pass to the test                                                                             |
-| `match`     | N/A             | regular expression of tests to run                                                                        |
-| `parallel`  | `0`             | allow parallel execution of test functions that call `t.Parallel`                                         |
-| `failfast`  | `false`         | do not start new tests after the first test failure                                                       |
-| `cover`     | `off`           | set the mode for coverage analysis for the package being tested. Options are "off, set, count, automatic" |
+| Name           | Default         | Description                                                                                            |
+|----------------|-----------------|--------------------------------------------------------------------------------------------------------|
+| `package`      | `./...`         | the package to scan                                                                                    |
+| `platforms`    | native platform | comma-separated list of platforms to test                                                              |
+| `tags`         | N/A             | comma-separated list of build tags to pass to go compiler                                              |
+| `args`         | N/A             | arguments to pass to the test                                                                          |
+| `match`        | N/A             | regular expression of tests to run                                                                     |
+| `parallel`     | `0`             | allow parallel execution of test functions that call `t.Parallel`                                      |
+| `failfast`     | `false`         | do not start new tests after the first test failure                                                    |
+| `cover`        | disabled        | enable coverage computations                                                                           |
+| `coverprofile` | coverage.txt    | write a coverage profile to a file that holds the collected statistics                                 |
+| `covermode`    | `set`           | set the mode for coverage analysis for the package being tested. Options are "off, set, count, atomic" |
 
 ### Outputs
 
